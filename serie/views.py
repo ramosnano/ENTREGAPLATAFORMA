@@ -23,7 +23,6 @@ def create_serie_view(request):
             new_serie = Serie.objects.create(
                 nombre = form.cleaned_data['nombre'],
                 duracioncapitulos = form.cleaned_data['duracioncapitulos'],
-                temporadas = form.cleaned_data['temporadas'],
                 actores = form.cleaned_data['actores'],
                 creacion = form.cleaned_data['creacion'],
                 SKU = form.cleaned_data['SKU'],

@@ -32,7 +32,6 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=40)),
                 ('duracioncapitulos', models.IntegerField()),
-                ('temporadas', models.IntegerField()),
                 ('actores', models.CharField(max_length=100)),
                 ('creacion', models.IntegerField()),
                 ('SKU', models.CharField(max_length=30, unique=True)),
