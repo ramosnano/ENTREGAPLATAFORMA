@@ -1,6 +1,9 @@
 from django.contrib import admin
 from plataforma.views import index
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('', index, name = 'index'),
@@ -10,3 +13,4 @@ urlpatterns = [
     path('documentales/', include('documental.urls')),
 
 ]
+
