@@ -3,21 +3,20 @@
 {% block contenido %}
 
 {% if form %}
-    <h2>ALTA DE DOCUMENTALES</h2>
-
-    <form action="" method="POST" >
+    <h2 style="margin-left:34rem; margin-top:2rem">ALTA DE DOCUMENTALES</h2>
+    <form action="" method="POST" style="margin-left:35rem;margin-top:4rem">
         {% csrf_token %}
         <table>
             {{form.as_table}}
         </table>
         <input class="btn btn-primary" type="submit" value="CREAR DOCUMENTAL">
-        <!-- <input type="submit", value="CREAR DOCUMENTAL"> -->
     </form>
 
 {% elif new_docu %}
 
-    <div class="card" style="width: 18rem;">
-        <!-- <img class="card-img-top" src=".../100px180/" alt="Card image cap"> -->
+    <h2 style="color:black; margin-left:35rem; margin-top:2rem">DOCUMENTAL CREADO</h2>
+    <div class="card" style="width: 18rem;background-color: rgb(246, 245, 245);margin-top:4rem;margin-left:37rem">
+
         <div class="card-body">
             <h5 class="card-title">{{new_docu.nombre}}</h5>
             <p class="card-text">{{new_docu.duracionminutos}}</p>
