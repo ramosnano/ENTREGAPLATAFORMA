@@ -1,0 +1,25 @@
+{% extends 'bases.html' %}
+
+{% block titulo %}
+    SERIES
+{% endblock %}
+
+{% block contenido %}
+<h2>RESULTADOS DE LA BUSQUEDA:</h2>
+<div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+    {% for producto in products %}
+
+    <div class="card" style="width: 18rem;">
+        <!-- <img class="card-img-top" src=".../100px180/" alt="Card image cap"> -->
+        <div class="card-body">
+            <h5 class="card-title">{{producto.nombre}}</h5>
+            <p class="card-text">{{producto.actores}}</p>
+            <p class="card-text">{{producto.duracioncapitulos}} cap.</p>
+            <p class="card-text">{{producto.temporadas}} temp.</p>
+            <a href="#" class="btn btn-primary">MIRAR</a>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}
