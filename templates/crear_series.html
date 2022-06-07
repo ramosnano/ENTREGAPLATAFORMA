@@ -22,7 +22,11 @@
             <p class="card-text">{{new_serie.duracioncapitulos}}</p>
             </div>
     </div>
-
+{% elif errors %}
+    <div>
+        {{errors}}
+    </div>
 {% endif %}
+
 
 {% endblock %}

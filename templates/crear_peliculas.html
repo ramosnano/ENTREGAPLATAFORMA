@@ -22,7 +22,11 @@
             <p class="card-text">{{new_product.actores}}</p>
         </div>
     </div>
-
+    
+{% elif errors %}
+    <div>
+        {{errors}}
+    </div>
 
 
 {% endif %}

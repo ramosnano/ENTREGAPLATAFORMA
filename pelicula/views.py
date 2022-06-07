@@ -30,6 +30,8 @@ def create_movie_view(request):
                 active = form.cleaned_data['active'],
             )
             context ={'new_product':new_product}
+        else:
+            context = {'errors':form.errors}
         return render(request, 'crear_peliculas.html', context=context)
 
 def search_movie_view(request):

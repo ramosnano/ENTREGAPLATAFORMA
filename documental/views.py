@@ -29,6 +29,8 @@ def create_documental_view(request):
                 active = form.cleaned_data['active'],
             )
             context ={'new_docu':new_docu}
+        else:
+            context = {'errors':form.errors}
         return render(request, 'crear_documentales.html', context=context)
 
 def search_documental_view(request):

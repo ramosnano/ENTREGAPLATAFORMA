@@ -29,6 +29,8 @@ def create_serie_view(request):
                 active = form.cleaned_data['active'],
             )
             context ={'new_serie':new_serie}
+        else:
+            context = {'errors':form.errors}
         return render(request, 'crear_series.html', context=context)
 
 def search_serie_view(request):
