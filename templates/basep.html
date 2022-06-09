@@ -36,21 +36,6 @@
                 <a class="dropdown-item" href="/documentales/">Documentales</a>
                 <a class="dropdown-item" href="/series/">Series</a>
                         </li>
-                {% if request.user.is_authenticated %}
-                        <li class="nav-item" style= margin-right:42rem >
-                            <a> {{request.user.username}} </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout/">Logout</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login/">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/register/">Register</a>
-                        </li>
-                        {% endif %}
             </ul>
             <form class="form-inline my-2 my-lg-0" action = "/peliculas/buscar-peliculas/" method = "GET">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name = 'search'>
@@ -58,34 +43,23 @@
             </form>
         </div>
         </nav>
-
-    <!-- <nav class="navbar navbar-expand-lg navbar " style="background: rgb(224, 168, 168);">
-        <a class="navbar-brand" href="/">INICIO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/peliculas/">PELICULAS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/peliculas/crear-peliculas/">ALTA PELICULAS</a>
-                </li>
-            </ul>
-            </form>
-            <form class="form-inline my-2 my-lg-0" action = "/peliculas/buscar-peliculas/" method = "GET">
-                <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search" name = 'search'>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">IR</button>
-            </form>
-        </div>
-    
-    </nav> -->
-
-    
-    
+        <ul class="nav justify-content-end">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link active" href="/logout/">Logout</a>
+            </li>
+            <li class="nav-item" style= margin-top:0.5rem>    
+                <a> {{request.user.username}} </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="/login/">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register/">Register</a>
+            </li>
+            {% endif %}
+        </ul>    
     
     {% block contenido %}
     {% endblock %}
