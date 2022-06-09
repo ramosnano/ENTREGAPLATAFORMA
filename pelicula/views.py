@@ -6,6 +6,9 @@ from django.http import HttpResponse
 from pelicula.models import Movie
 from pelicula.forms import Movie_form
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def products(request):
     print(request.method)
@@ -13,6 +16,7 @@ def products(request):
     context = {'productos':productos}
     return render(request, 'peliculas.html', context=context)
 
+@login_required
 def create_movie_view(request):
     if request.method == 'GET':
         form = Movie_form()

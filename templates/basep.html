@@ -36,6 +36,21 @@
                 <a class="dropdown-item" href="/documentales/">Documentales</a>
                 <a class="dropdown-item" href="/series/">Series</a>
                         </li>
+                {% if request.user.is_authenticated %}
+                        <li class="nav-item" style= margin-right:42rem >
+                            <a> {{request.user.username}} </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout/">Logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login/">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register/">Register</a>
+                        </li>
+                        {% endif %}
             </ul>
             <form class="form-inline my-2 my-lg-0" action = "/peliculas/buscar-peliculas/" method = "GET">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name = 'search'>

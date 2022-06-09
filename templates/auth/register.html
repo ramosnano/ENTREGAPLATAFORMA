@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Login
+{% endblock %}
+
+{% block contenido %}
+
+<h2 style="margin-left:44rem; margin-top:2rem">REGISTRO</h2>
+    <h3>{{errors}}</h3>
+    <form action="" method="POST" style="margin-left:37rem;margin-top:3rem">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input style="margin-left:9rem; margin-top:1rem" class="btn btn-primary" type="submit" value="REGISTRAR">
+    </form>
+
+{% endblock %}

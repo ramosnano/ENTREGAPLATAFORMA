@@ -5,6 +5,9 @@ from django.http import HttpResponse
 from serie.models import Serie
 from serie.forms import Serie_form
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def products(request):
     print(request.method)
@@ -12,6 +15,7 @@ def products(request):
     context = {'productos':productos}
     return render(request, 'series.html', context=context)
 
+@login_required
 def create_serie_view(request):
     if request.method == 'GET':
         form = Serie_form()
