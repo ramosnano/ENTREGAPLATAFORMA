@@ -47,6 +47,8 @@
         <ul class="nav justify-content-end">
             {% if request.user.is_authenticated %}
             <li class="nav-item">
+                    <li class="nav-item">
+                    <img src="{{request.user.user_profile.image.url}}" style="height: 2rem;">
                 <a class="nav-link active" href="/logout/">Logout</a>
             </li>
             <li class="nav-item" style= margin-top:0.5rem>    
