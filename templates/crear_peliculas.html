@@ -12,14 +12,14 @@
         <input style="margin-left:6rem; margin-top:1rem" class="btn btn-primary" type="submit" value="CREAR PELICULA">
     </form>
 
-{% elif new_product %}
+{% elif new_movie %}
         <h2 style="color:black; margin-left:37rem; margin-top:2rem">PELICULA CREADA</h2>
         <div class="card" style="width: 18rem;background-color: rgb(246, 245, 245);margin-top:4rem;margin-left:37rem">
 
         <div class="card-body">
-            <h5 class="card-title">{{new_product.nombre}}</h5>
-            <p class="card-text">{{new_product.duracionminutos}}</p>
-            <p class="card-text">{{new_product.actores}}</p>
+            <h5 class="card-title">{{new_movie.nombre}}</h5>
+            <p class="card-text">{{new_movie.duracionminutos}}</p>
+            <p class="card-text">{{new_movie.actores}}</p>
         </div>
         <a href="/peliculas/crear-peliculas/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">CARGAR OTRA</a>
         <a href="/peliculas/" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">PELICULAS</a>
