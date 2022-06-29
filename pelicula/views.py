@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 
-class Create_movie_view(LoginRequiredMixin, CreateView):
+class Create_movie(LoginRequiredMixin, CreateView):
     model = Movie
     template_name = 'crear_peliculas.html'
     fields = '__all__'
