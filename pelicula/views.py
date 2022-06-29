@@ -1,6 +1,6 @@
-
 from unicodedata import name
 from django.shortcuts import render
+from django.urls import reverse
 from django.http import HttpResponse
 
 from pelicula.models import Movie
@@ -9,34 +9,41 @@ from pelicula.forms import Movie_form
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-def products(request):
-    print(request.method)
-    productos = Movie.objects.all()
-    context = {'productos':productos}
-    return render(request, 'peliculas.html', context=context)
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
-@login_required
-def create_movie_view(request):
-    if request.method == 'GET':
-        form = Movie_form()
-        context = {'form':form}
-        return render(request, 'crear_peliculas.html', context=context)
-    else:
-        form = Movie_form(request.POST)
-        if form.is_valid():
-            new_product = Movie.objects.create(
-                nombre = form.cleaned_data['nombre'],
-                duracionminutos = form.cleaned_data['duracionminutos'],
-                actores = form.cleaned_data['actores'],
-                creacion = form.cleaned_data['creacion'],
-                SKU = form.cleaned_data['SKU'],
-                active = form.cleaned_data['active'],
-            )
-            context ={'new_product':new_product}
-        else:
-            context = {'errors':form.errors}
-        return render(request, 'crear_peliculas.html', context=context)
+
+class Create_movie_view(LoginRequiredMixin, CreateView):
+    model = Movie
+    template_name = 'crear_peliculas.html'
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('Detail_movie', kwargs={'pk':self.object.pk})
+
+class List_movie(ListView):
+    model = Movie
+    template_name= 'peliculas.html'
+    queryset = Movie.objects.all()
+
+class Update_movie(UpdateView):
+    model = Movie
+    template_name = 'update_pelicula.html'
+    fields = '__all__'
+
+
+    def get_success_url(self):
+        return reverse('Detail_movie', kwargs = {'pk':self.object.pk})
+    
+class Detail_movie(DetailView):
+    model = Movie
+    template_name= 'detail_pelicula.html'
+
+class Delete_movie(DeleteView):
+    model = Movie
+    template_name = 'delete_pelicula.html'
+
+    def get_success_url(self):
+        return reverse('list_movie')
 
 def search_movie_view(request):
     print(request.GET)
@@ -44,3 +51,4 @@ def search_movie_view(request):
     products = Movie.objects.filter(nombre__contains = request.GET['search'])
     context = {'products':products}
     return render(request, 'buscar_peliculas.html', context = context)
+    
