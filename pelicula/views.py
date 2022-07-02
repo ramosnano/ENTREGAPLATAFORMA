@@ -18,32 +18,36 @@ class Create_movie(LoginRequiredMixin, CreateView):
     fields = '__all__'
 
     def get_success_url(self):
-        return reverse('Detail_movie', kwargs={'pk':self.object.pk})
+        return reverse('detail_pelicula', kwargs={'pk':self.object.pk})
+
 
 class List_movie(ListView):
     model = Movie
     template_name= 'peliculas.html'
     queryset = Movie.objects.all()
 
+
 class Update_movie(UpdateView):
     model = Movie
     template_name = 'update_pelicula.html'
     fields = '__all__'
 
-
     def get_success_url(self):
-        return reverse('Detail_movie', kwargs = {'pk':self.object.pk})
-    
+        return reverse('detail_pelicula', kwargs = {'pk':self.object.pk})
+
+
 class Detail_movie(DetailView):
     model = Movie
     template_name= 'detail_pelicula.html'
+
 
 class Delete_movie(DeleteView):
     model = Movie
     template_name = 'delete_pelicula.html'
 
     def get_success_url(self):
-        return reverse('list_movie')
+        return reverse('list-peliculas')
+
 
 def search_movie_view(request):
     print(request.GET)

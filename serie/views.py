@@ -1,5 +1,6 @@
 from unicodedata import name
 from django.shortcuts import render
+from django.urls import reverse
 from django.http import HttpResponse
 
 from serie.models import Serie
@@ -8,38 +9,44 @@ from serie.forms import Serie_form
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-def products(request):
-    print(request.method)
-    productos = Serie.objects.all()
-    context = {'productos':productos}
-    return render(request, 'series.html', context=context)
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
-@login_required
-def create_serie_view(request):
-    if request.method == 'GET':
-        form = Serie_form()
-        context = {'form':form}
-        return render(request, 'crear_series.html', context=context)
-    else:
-        form = Serie_form(request.POST)
-        if form.is_valid():
-            new_serie = Serie.objects.create(
-                nombre = form.cleaned_data['nombre'],
-                duracioncapitulos = form.cleaned_data['duracioncapitulos'],
-                actores = form.cleaned_data['actores'],
-                creacion = form.cleaned_data['creacion'],
-                SKU = form.cleaned_data['SKU'],
-                active = form.cleaned_data['active'],
-            )
-            context ={'new_serie':new_serie}
-        else:
-            context = {'errors':form.errors}
-        return render(request, 'crear_series.html', context=context)
+
+class Create_serie(LoginRequiredMixin, CreateView):
+    model = Serie
+    template_name = 'crear_series.html'
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('detail_serie', kwargs={'pk':self.object.pk})
+
+class List_serie(ListView):
+    model = Serie
+    template_name= 'series.html'
+    queryset = Serie.objects.all()
+
+class Update_serie(UpdateView):
+    model = Serie
+    template_name = 'update_serie.html'
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('detail_serie', kwargs = {'pk':self.object.pk})
+    
+class Detail_serie(DetailView):
+    model = Serie
+    template_name= 'detail_serie.html'
+
+class Delete_serie(DeleteView):
+    model = Serie
+    template_name = 'delete_serie.html'
+
+    def get_success_url(self):
+        return reverse('list_series')
 
 def search_serie_view(request):
     print(request.GET)
     #product = Products.objects.get()
-    products = Serie.objects.filter(nombre__contains = request.GET['search'])
-    context = {'products':products}
+    series = Serie.objects.filter(nombre__contains = request.GET['search'])
+    context = {'series':series}
     return render(request, 'buscar_series.html', context = context)

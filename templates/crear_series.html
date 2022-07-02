@@ -3,6 +3,22 @@
 {% block contenido %}
 
 {% if form %}
+<h2 style="margin-left:30rem">ALTA DE SERIES</h2>
+<form action="" method="POST" style="margin-left:40rem;margin-top:7rem" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <input type="submit" , value="Enviar">
+</form>
+
+{% endif %}
+{% endblock %}
+
+
+
+
+<!-- {% if form %}
     <h2 style="margin-left:40rem; margin-top:2rem">ALTA DE SERIES</h2>
     <form action="" method="POST" style="margin-left:35rem;margin-top:4rem">
         {% csrf_token %}
@@ -18,9 +34,9 @@
         <div class="card" style="width: 18rem;background-color: rgb(246, 245, 245);margin-top:4rem;margin-left:37rem">
         <div class="card-body">
             <h5 class="card-title">{{new_serie.nombre}}</h5>
-            <p class="card-text">{{new_serie.actores}}</p>
             <p class="card-text">{{new_serie.duracioncapitulos}}</p>
-            </div>
+            <p class="card-text">{{new_serie.actores}}</p>
+        </div>
             <a href="/series/crear-series/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">CARGAR OTRA</a>
             <a href="/series/" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">SERIES</a>
     </div>
@@ -29,6 +45,3 @@
         {{errors}}
     </div>
 {% endif %}
-
-
-{% endblock %}
