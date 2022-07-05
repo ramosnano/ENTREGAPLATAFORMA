@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-    Borrar Película
+    Borrar Documental
 {% endblock %}
 
 {% block contenido %}
 
 
-    <h3 style="color: red">Estas por eliminar la Película {{object.name}}, ¿Estás seguro?</h3>
+    <h3 style="color: red">Estas por eliminar el Documental {{object.name}}, ¿Estás seguro?</h3>
 
     <form method = "POST">
         {% csrf_token %}

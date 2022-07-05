@@ -1,45 +1,54 @@
 from unicodedata import name
 from django.shortcuts import render
+from django.urls import reverse
 from django.http import HttpResponse
 
 from documental.models import Documental
-from documental.forms import Documental_form
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-def products(request):
-    print(request.method)
-    productos = Documental.objects.all()
-    context = {'productos':productos}
-    return render(request, 'documentales.html', context=context)
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
-@login_required
-def create_documental_view(request):
-    if request.method == 'GET':
-        form = Documental_form()
-        context = {'form':form}
-        return render(request, 'crear_documentales.html', context=context)
-    else:
-        form = Documental_form(request.POST)
-        if form.is_valid():
-            new_docu = Documental.objects.create(
-                nombre = form.cleaned_data['nombre'],
-                duracionminutos = form.cleaned_data['duracionminutos'],
-                actores = form.cleaned_data['actores'],
-                creacion = form.cleaned_data['creacion'],
-                SKU = form.cleaned_data['SKU'],
-                active = form.cleaned_data['active'],
-            )
-            context ={'new_docu':new_docu}
-        else:
-            context = {'errors':form.errors}
-        return render(request, 'crear_documentales.html', context=context)
+
+class Create_documental(LoginRequiredMixin, CreateView):
+    model = Documental
+    template_name = 'crear_documentales.html'
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('detail_documental', kwargs={'pk':self.object.pk})
+
+
+class List_documental(ListView):
+    model = Documental
+    template_name= 'documentales.html'
+    queryset = Documental.objects.all()
+
+
+class Update_documental(LoginRequiredMixin, UpdateView):
+    model = Documental
+    template_name = 'update_documental.html'
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('detail_documental', kwargs = {'pk':self.object.pk})
+
+
+class Detail_documental(DetailView):
+    model = Documental
+    template_name= 'detail_documental.html'
+
+
+class Delete_documental(LoginRequiredMixin, DeleteView):
+    model = Documental
+    template_name = 'delete_documental.html'
+
+    def get_success_url(self):
+        return reverse('list-documentales')
 
 def search_documental_view(request):
     print(request.GET)
-    #product = Products.objects.get()
     products = Documental.objects.filter(nombre__contains = request.GET['search'])
     context = {'products':products}
     return render(request, 'buscar_documentales.html', context = context)

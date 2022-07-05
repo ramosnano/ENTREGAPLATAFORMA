@@ -7,6 +7,7 @@ class Documental(models.Model):
     creacion =  models.IntegerField()
     SKU = models.CharField(max_length=30, unique=True)
     active = models.BooleanField(default=True)
+    image = models.ImageField(upload_to = 'documental', blank=True, null=True)
     
     class Meta:
         verbose_name = 'documental'

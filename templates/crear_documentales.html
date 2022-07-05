@@ -3,33 +3,14 @@
 {% block contenido %}
 
 {% if form %}
-    <h2 style="margin-left:34rem; margin-top:2rem">ALTA DE DOCUMENTALES</h2>
-    <form action="" method="POST" style="margin-left:35rem;margin-top:4rem">
-        {% csrf_token %}
-        <table>
-            {{form.as_table}}
-        </table>
-        <input style="margin-left:6rem; margin-top:1rem" class="btn btn-primary" type="submit" value="CREAR DOCUMENTAL">
-    </form>
+<h2 style="margin-left:30rem">ALTA DE DOCUMENTALES</h2>
+<form action="" method="POST" style="margin-left:40rem;margin-top:7rem" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <input style="margin-left:6rem; margin-top:1rem" class="btn btn-primary" type="submit" value= 'CREAR DOCUMENTAL'>
+</form>
 
-{% elif new_docu %}
-
-    <h2 style="color:black; margin-left:35rem; margin-top:2rem">DOCUMENTAL CREADO</h2>
-    <div class="card" style="width: 18rem;background-color: rgb(246, 245, 245);margin-top:4rem;margin-left:37rem">
-
-        <div class="card-body">
-            <h5 class="card-title">{{new_docu.nombre}}</h5>
-            <p class="card-text">{{new_docu.duracionminutos}}</p>
-            <p class="card-text">{{new_docu.actores}}</p>
-        </div>
-        <a href="/documentales/crear-documentales/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">CARGAR OTRO</a>
-        <a href="/documentales/" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">DOCUMENTALES</a>
-    </div>
-
-{% elif errors %}
-    <div>
-        {{errors}}
-    </div>
 {% endif %}
-
 {% endblock %}
