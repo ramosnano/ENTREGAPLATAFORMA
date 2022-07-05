@@ -9,9 +9,29 @@ PERFIL DE USUARIO
 
 <body
 style="background-color: rgb(14, 132, 63)">
-        <h1 style = "color:rgb(5, 5, 5); margin-left:45rem; margin-right: 35rem;"> ACA VA EL DETALLE DE LOS USUARIOS </h1>
-        
-        <h4 style = "color:rgb(4, 4, 4); margin-left:5rem; margin-top:3rem; margin-right: 5rem;">NA
-        </h4>
+        <h1 style = "color:rgb(5, 5, 5); margin-left:45rem; margin-right: 35rem;"> DETALLE DE USUARIO </h1>
 </body>
+
+<div class="d-flex" style="margin-top:4rem; margin-left:4rem">
+    {% for product in object_list %}
+
+    <div class="card" style="width: 18rem;">
+        {% if product.profile_picture %}
+        <img src= "{{product.profile_picture.url}}" class="card-img-top" >
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">Usuario: {{product.user}}</h5>
+            <!-- <p class="card-text">Email: {{product.email}}</p> -->
+            <p class="card-text">Teléfono: {{product.phone}}</p>
+            <a href="/peliculas/update-pelicula/{{object.id}}/" class="btn btn-primary">Editar</a>
+            <a href="/peliculas/delete-pelicula/{{object.id}}/" class="btn btn-danger">Eliminar</a>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
 {% endblock %}
+
+
+
+

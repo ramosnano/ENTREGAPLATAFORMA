@@ -3,4 +3,4 @@ from users.models import User_profile
 
 @admin.register(User_profile)
 class User_profileAdmin(admin.ModelAdmin):
-    list_display = ['user','phone','image']
+    list_display = ['user', 'phone', 'profile_picture']

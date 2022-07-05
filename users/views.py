@@ -4,7 +4,6 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView, U
 from users.models import User_profile
 
 
-
 class List_profiles(ListView):
     model = User_profile
     template_name= 'profiles.html'

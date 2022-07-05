@@ -27,7 +27,7 @@ class List_movie(ListView):
     queryset = Movie.objects.all()
 
 
-class Update_movie(UpdateView):
+class Update_movie(LoginRequiredMixin, UpdateView):
     model = Movie
     template_name = 'update_pelicula.html'
     fields = '__all__'
@@ -41,7 +41,7 @@ class Detail_movie(DetailView):
     template_name= 'detail_pelicula.html'
 
 
-class Delete_movie(DeleteView):
+class Delete_movie(LoginRequiredMixin, DeleteView):
     model = Movie
     template_name = 'delete_pelicula.html'
 
@@ -51,8 +51,6 @@ class Delete_movie(DeleteView):
 
 def search_movie_view(request):
     print(request.GET)
-    #product = Products.objects.get()
     products = Movie.objects.filter(nombre__contains = request.GET['search'])
     context = {'products':products}
     return render(request, 'buscar_peliculas.html', context = context)
-    

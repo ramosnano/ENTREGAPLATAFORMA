@@ -25,7 +25,7 @@ class List_serie(ListView):
     template_name= 'series.html'
     queryset = Serie.objects.all()
 
-class Update_serie(UpdateView):
+class Update_serie(LoginRequiredMixin, UpdateView):
     model = Serie
     template_name = 'update_serie.html'
     fields = '__all__'
@@ -37,7 +37,7 @@ class Detail_serie(DetailView):
     model = Serie
     template_name= 'detail_serie.html'
 
-class Delete_serie(DeleteView):
+class Delete_serie(LoginRequiredMixin, DeleteView):
     model = Serie
     template_name = 'delete_serie.html'
 
@@ -46,7 +46,6 @@ class Delete_serie(DeleteView):
 
 def search_serie_view(request):
     print(request.GET)
-    #product = Products.objects.get()
     series = Serie.objects.filter(nombre__contains = request.GET['search'])
-    context = {'series':series}
+    context = {'products':series}
     return render(request, 'buscar_series.html', context = context)

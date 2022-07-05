@@ -11,8 +11,8 @@
         {% endif %}
         <div class="card-body">
             <h5 class="card-title">{{product.nombre}}</h5>
-            <p class="card-text">{{product.actores}}</p>
-            <p class="card-text">{{product.duracioncapitulos}} capítulos</p>
+            <p class="card-text">Protagonista: {{product.actores}}</p>
+            <p class="card-text">Capítulos: {{product.duracioncapitulos}}</p>
             <a href="/series/detail-serie/{{product.id}}/" class="btn btn-primary">¡Ver más!</a>
         </div>
     </div>

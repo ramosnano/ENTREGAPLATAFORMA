@@ -7,15 +7,17 @@
 {% block contenido %}
 <h2 style="margin-left:30rem; margin-top:2rem">RESULTADOS DE LA BUSQUEDA</h1>
 <div class="d-flex" style="margin-top:4rem; margin-left:4rem">
-    {% for producto in products %}
+    {% for product in products %}
 
     <div class="card" style="width: 18rem;">
-        <!-- <img class="card-img-top" src=".../100px180/" alt="Card image cap"> -->
+        {% if product.image %}
+        <img src= "{{product.image.url}}" class="card-img-top" >
+        {% endif %}
         <div class="card-body">
-            <h5 class="card-title">{{producto.nombre}}</h5>
-            <p class="card-text">{{producto.actores}}</p>
-            <p class="card-text">{{producto.duracioncapitulos}} cap</p>
-            <a href="#" class="btn btn-primary">MIRAR</a>
+            <h5 class="card-title">{{product.nombre}}</h5>
+            <p class="card-text">{{product.actores}}</p>
+            <p class="card-text">{{product.duracioncapitulos}} cap</p>
+            <a href="/series/detail-serie/{{product.id}}/" class="btn btn-primary">¡Ver más!</a>
         </div>
     </div>
 
