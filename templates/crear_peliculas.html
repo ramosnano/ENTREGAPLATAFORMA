@@ -4,8 +4,8 @@
 {% block contenido %}
 
 {% if form %}
-<h2 style="margin-left:30rem">ALTA DE PELÍCULAS</h2>
-<form action="" method="POST" style="margin-left:40rem;margin-top:7rem" enctype="multipart/form-data">
+<h2 style="color:rgb(255, 255, 255);margin-left:35rem; margin-top:2rem">ALTA DE PELÍCULAS</h2>
+<form action="" method="POST" style="color:rgb(255, 255, 255);margin-left:40rem;margin-top:7rem" enctype="multipart/form-data">
     {% csrf_token %}
     <table>
         {{form.as_table}}
